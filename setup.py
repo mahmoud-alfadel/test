@@ -11,20 +11,14 @@ with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
 requirements = [
-    "certifi>=2020.6.20",
-    "chardet>=3.0.4",
     "click>=7.1.2",
-    "idna>=2.10",
     "lxml>=4.6.1",
     "node-semver>=0.8.0",
     "numpy>=1.19.4",
     "pandas>=1.1.4",
     "python-dateutil>=2.8.1",
-    "pytz>=2020.4",
     "requests>=2.24.0",
-    "six>=1.15.0",
     "tqdm>=4.51.0",
-    "urllib3>=1.25.11",
     "xlrd>=1.2.0",
     "XlsxWriter>=1.3.7",
 ]
