@@ -134,6 +134,6 @@ def fetch_dependency_history(github_url: str, access_tokens: str) -> pd.DataFram
     df = pd.concat([df, nf])
     df['date'] = df.date.astype(str)
     df.to_csv("Newdates.csv", index=False)
-    df = pd.read_csv('Newdates.csv')
+    #df = pd.read_csv('Newdates.csv')
     return df
     
