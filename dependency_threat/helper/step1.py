@@ -7,6 +7,8 @@ import pandas as pd
 import glob
 import pytz
 import os
+import datetime
+from datetime import date
 pd.options.mode.chained_assignment = None 
 
 
@@ -115,7 +117,8 @@ def fetch_dependency_history(github_url: str, access_tokens: str) -> pd.DataFram
 
     # add the auto-fill-dates script - new code added by Mahmoud
     df['date'] = pd.to_datetime(df['date'])
-    dates = pd.date_range(df['date'].min().strftime('%Y-%m-%d'), df['date'].max().strftime('%Y-%m-%d'))
+    today = date.today()
+    dates = pd.date_range(df['date'].min().strftime('%Y-%m-%d'), today)
     missing_dates = dates[~dates.isin(df['date'].dt.date)].to_list()    
     avail_dates = dates[dates.isin(df['date'].dt.date)].to_list()[::-1]
     dates = dates.to_list()
@@ -129,7 +132,8 @@ def fetch_dependency_history(github_url: str, access_tokens: str) -> pd.DataFram
         #print(rows)  print to check the progress
         nf = pd.concat([nf, rows])
     df = pd.concat([df, nf])
-    df.to_csv("Newdates.csv", index=False)
     df['date'] = df.date.astype(str)
+    df.to_csv("Newdates.csv", index=False)
+    df = pd.read_csv('Newdates.csv')
     return df
     

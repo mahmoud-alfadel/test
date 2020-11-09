@@ -22,7 +22,7 @@ def find_commits_at_intervals(df, interval=5):
 
     percentage = 100 // interval
 
-    df = df[df["commit_date"].str.contains("-")]
+    #df = df[df["commit_date"].str.contains("-")]
 
     dates = df["commit_date"].apply(parse).tolist()
 
