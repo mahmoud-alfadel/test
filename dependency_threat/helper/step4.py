@@ -35,10 +35,8 @@ def find_commits_at_intervals(df, interval=5):
     intervals_timestamp_list = []
 
     for interval_date in date_intervals(min_date, max_date, interval):
-        print(interval_date)
         intervals_timestamp_list.append(interval_date)
 
-    print("")
     first_loop = True
     prev_commit_date = None
     selected_dates.append(min_date)
@@ -47,7 +45,6 @@ def find_commits_at_intervals(df, interval=5):
         if first_loop:
             # selected_dates.append(min_date)
             prev_commit_date = selected_dates[0]
-            print(prev_commit_date)
             first_loop = False
         else:
             for commit_date in dates:
@@ -55,7 +52,6 @@ def find_commits_at_intervals(df, interval=5):
                     prev_commit_date = commit_date
                 else:
                     break
-            print(prev_commit_date)
             selected_dates.append(prev_commit_date)
 
     # extra check
