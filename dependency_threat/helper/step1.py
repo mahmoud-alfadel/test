@@ -4,6 +4,10 @@ import csv
 import sys
 import requests
 import pandas as pd
+import glob
+import pytz
+import os
+pd.options.mode.chained_assignment = None 
 
 
 def get_package_dependencies(
@@ -31,11 +35,11 @@ def get_commits(
 
     result = []
     for i in range(1, 10000):
-        print("commit page: ", i)
+        #print("commit page: ", i)
         no_next_page = False
         for x, access_token in enumerate(access_tokens, 1):
             access_failed = False
-            print("access attempt: ", x)
+            #print("access attempt: ", x)
             r = requests.get(
                 "https://api.github.com/repos/{}/{}/commits?path={}&page={}&access_token={}".format(
                     username, repo, filename, i, access_token
@@ -84,7 +88,7 @@ def get_commits(
                         break
             else:
                 no_next_page = True
-                print("\n##no next page##\n", commits)
+                #print("\n##no next page##\n", commits)
                 break
             if not access_failed:
                 break
@@ -108,4 +112,24 @@ def fetch_dependency_history(github_url: str, access_tokens: str) -> pd.DataFram
         df = df.append(result, ignore_index=True)
         df = df.drop_duplicates()
         df = df[~df["version"].str.contains("/")]
+
+    # add the auto-fill-dates script - new code added by Mahmoud
+    df['date'] = pd.to_datetime(df['date'])
+    dates = pd.date_range(df['date'].min().strftime('%Y-%m-%d'), df['date'].max().strftime('%Y-%m-%d'))
+    missing_dates = dates[~dates.isin(df['date'].dt.date)].to_list()    
+    avail_dates = dates[dates.isin(df['date'].dt.date)].to_list()[::-1]
+    dates = dates.to_list()
+    nf = pd.DataFrame()
+    for missing_date in missing_dates:
+        for last_matched_date in avail_dates:
+            if last_matched_date > missing_date: continue
+            else: break
+        rows = df[df['date'].dt.date == last_matched_date].copy(deep=False)
+        rows['date'] = rows['date'].apply(lambda x: pytz.utc.localize(missing_date))
+        #print(rows)  print to check the progress
+        nf = pd.concat([nf, rows])
+    df = pd.concat([df, nf])
+    df.to_csv("Newdates.csv", index=False)
+    df['date'] = df.date.astype(str)
     return df
+    

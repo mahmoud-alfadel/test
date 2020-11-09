@@ -206,7 +206,7 @@ def repo_commits_combiner(df):
         repo_combined_commits_list.append(combined_commit)
 
     # extra check
-    print(len(repo_unique_sha_list) == len(repo_combined_commits_list))
+    #print(len(repo_unique_sha_list) == len(repo_combined_commits_list))
 
     repo_combined_commits_list.reverse()
     # mark_fixing_commits(repo_combined_commits_list)

@@ -35,7 +35,7 @@ def find_commits_at_intervals(df, interval=5):
     intervals_timestamp_list = []
 
     for interval_date in date_intervals(min_date, max_date, interval):
-        print(interval_date)
+        #print(interval_date)
         intervals_timestamp_list.append(interval_date)
 
     print("")
@@ -47,7 +47,7 @@ def find_commits_at_intervals(df, interval=5):
         if first_loop:
             # selected_dates.append(min_date)
             prev_commit_date = selected_dates[0]
-            print(prev_commit_date)
+            #print(prev_commit_date)
             first_loop = False
         else:
             for commit_date in dates:
@@ -55,7 +55,7 @@ def find_commits_at_intervals(df, interval=5):
                     prev_commit_date = commit_date
                 else:
                     break
-            print(prev_commit_date)
+            #print(prev_commit_date)
             selected_dates.append(prev_commit_date)
 
     # extra check
@@ -83,6 +83,7 @@ def find_commits_at_intervals(df, interval=5):
         print(dd.head())
         print(percentages)
 
+    dd = dd[dd["commit_date"].str.contains("-")]
     # extra check
     if len(dd) != interval + 1:
         print("ERROR: PROBLEMATIC FILE")
