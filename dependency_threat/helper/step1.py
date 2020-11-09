@@ -99,7 +99,7 @@ def fetch_dependency_history(github_url: str, access_tokens: str) -> pd.DataFram
        scrapes github repo to extract sha, url, author, date, message, package_name, version
     """
     repo, username = github_url.split("/")[::-1][:2:]
-    print("Username:", username, 
+    print("Username:", username)
     print("Repository Name:", repo)
     result = get_commits(username, repo, access_tokens)
 

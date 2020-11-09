@@ -80,7 +80,7 @@
 			data: {
 				datasets: [{
 					data: [
-			{{row.affected_packages_low_list_count}}, {{row.affected_packages_medium_list_count}}, {{row.affected_packages_high_list_count}}, {{row.all_count}}],
+			{{row.affected_packages_low_list_count}}, {{row.affected_packages_medium_list_count}}, {{row.affected_packages_high_list_count}}, {{row.all_count}}-{{row.affected_count}}],
 					backgroundColor: [
                        "#00ff00",
                        "#FFA500",
@@ -91,8 +91,8 @@
 				labels: [
 					'Low Threat',
 					'Medium Threat',
-                    'High Threat',
-                    "Total Packages"
+          'High Threat',
+          "Unaffected "
 	
 				]
 			},
