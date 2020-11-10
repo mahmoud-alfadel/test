@@ -7,7 +7,6 @@ import os
 path = os.path.abspath(__file__).rsplit("/", 1)[0]
 
 
-
 def analyze(github_url, access_tokens, interval=5):
     print("Running Step 1: fetching dependency history")
     df = fetch_dependency_history(github_url, access_tokens)
