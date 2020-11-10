@@ -26,12 +26,12 @@ A Command Line tool to analyze npm dependency vulnerability
 INSTALLATION
 -----------------------
 
-        *  Install it using pip: `pip install git+"https://github.com/mahmoud-alfadel/dependency_threat"`
-        * Or, clone this repository: `git clone https://github.com/mahmoud-alfadel/dependency_threat`
-        * and, run: `pip install -e dependency_threat`
+        *  Install it using pip: ``pip install git+"https://github.com/mahmoud-alfadel/dependency_threat"``
+        * Or, clone this repository: ``git clone https://github.com/mahmoud-alfadel/dependency_threat``
+        * and, run: ``pip install -e dependency_threat``
 
 
 USAGE
 -----------
 
-        `dependency_threat --help`
+        ``dependency_threat --help``

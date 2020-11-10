@@ -18,6 +18,18 @@ import os
     help="set custom commit interval",
 )
 @click.option(
+    "-a",
+    "--a",
+    "--access_tokens",
+    "access_tokens",
+    type=str,
+    multiple=True,
+    required=True,
+    help="Github Access Token, see: https://github.com/settings/tokens",
+)
+
+
+@click.option(
     "-o",
     "--o",
     "--output_file",
@@ -25,10 +37,10 @@ import os
     type=str,
     help="name & path of the output csv file. By Default it will save in the current folder.",
 )
-def console(url, interval, output_file):
+def console(url, interval, output_file, access_tokens):
     """ \n\033[1m✨ Dependency Threat ✨\033[0m - Analyze Github Repository to Find NPM Vulnerabilities."""
 
-    df = analyze(url, interval)
+    df = analyze(url, access_tokens, interval)
     if output_file:
         df.to_csv(output_file, index=False)
         with open(output_file.replace(".csv", ".html"), 'w') as f:
