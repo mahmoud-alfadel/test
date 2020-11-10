@@ -24,6 +24,8 @@ def generate_html(df):
     except:
         pass
     data = []
+    #in case we want to remove the 0%
+    #df = df[~df['interval'].str.contains('20')]
     for index, row in df.iterrows():
         data.append(row.to_dict())
     with open(os.path.join(path,"helper", "data", "template.html"), 'r') as f:
