@@ -37,5 +37,6 @@ def generate_html(df):
             low_threats=list(df['affected_packages_low_list_count']),
             medium_threats=list(df['affected_packages_medium_list_count']),
             high_threats=list(df['affected_packages_high_list_count']),
+            unaffected=list( x-y for x,y in zip(df['all_count'] , df['affected_count']))
             )
 
