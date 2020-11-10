@@ -118,7 +118,12 @@
                 <h5>Project lifetime {{row.interval}}%</h5>
                 <table class="table">
                     <tbody>
-                        <tr>
+                      <tr>
+                        <th scope="row">Commit SHA:</th>
+                        <td> <a href="https://github.com/{{author}}/{{repository}}/commit/{{row.commit_sha}}">{{row.commit_sha}}</a></td>
+                      </tr>
+                      
+                      <tr>
                             <th scope="row">Commit Date:</th>
                             <td>{{row.commit_date}}</td>
                           </tr>
@@ -132,6 +137,10 @@
                         <td>{{row.affected_count}}</td>
                       </tr>
                       <tr>
+                        <th scope="row">Number of unaffected packages:</th>
+                        <td>{{row.all_count - row.affected_count}}</td>
+                      </tr>
+                      <tr>
                       <th scope="row">Ratio:</th>
                       <td>{{row.ratio}}</td>
                     </tr>
@@ -139,6 +148,9 @@
                       <th scope="row">Affected packages:</th>
                       <td>{{row.affected_packages}}</td>
                     </tr>
+
+
+
                     
                     </tbody>
                   </table>
